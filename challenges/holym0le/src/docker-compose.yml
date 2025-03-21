@@ -1,0 +1,25 @@
+services:
+  chall:
+    build: .
+    container_name: holym0le
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/:/home/user/build/:ro'
+      - './run.py:/home/user/run.py:ro'
+    ports:
+      - '1337:1337'
+      # - '1338:1338' # For QEMU GDB server
+      # - '5900:5900' # For QEMU VNC server
+    command:
+      - './run.py'
+      # - '--gdb'     # For QEMU GDB server
+      # - '--vnc'     # For QEMU VNC server
+      - 'build/disk.qcow2'
+    environment:
+      # - 'NETWORK=1' # For QEMU GDB/VNC server
+      - 'RLIMIT_FSIZE=69'
+      - 'TEMPDIRS=/tmp'
+      - 'TEMPDIRS_SIZE=69420666'
+      - 'TIMEOUT=69'
