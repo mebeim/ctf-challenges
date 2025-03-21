@@ -24,15 +24,16 @@ Building
 
 Build dependencies: the Python modules in `requirements.txt`.
 
-Use `make` to build the challenge an dalso the final attachment to distribute to
+Use `make` to build the challenge and also the final attachment to distribute to
 players.
 
 The [`build.py`](./build.py) script is responsible for the actual build (see
 `./build.py --help` for more info). The final product of the build are **two**
 QEMU disks containing the TempleOS bootloader, the OS and its filesystem,
-including the challenge files. The only difference between the two is that one
-(`build/disk-release.qcow2`) will contain the real flag and the other
-(`build/disk.qcow2`) will contain a redacted flag.
+including the challenge files:
+
+- `build/disk.qcow2` will contain the real flag;
+- `build/disk-players.qcow2` will contain a redacted flag.
 
 **NOTE** that the timeouts in `build.py` used to wait for some installation
 steps are hardcoded and based on my machine. You may have to increase them if

@@ -42,7 +42,7 @@ def parse_args() -> argparse.Namespace:
 	return ap.parse_args()
 
 
-def launch_vm(disk: Path, flag: str, args: argparse.Namespace):
+def launch_vm(disk: Path, args: argparse.Namespace):
 	assert disk.suffix == '.qcow2'
 
 	# Make a raw copy to preserve original
@@ -88,10 +88,8 @@ def main():
 	if not disk.is_file():
 		sys.exit(f'Disk not found or not a file: {disk}')
 
-	flag = os.getenv('FLAG', 'ptm{Dummy_test_flag}')
-
 	if os.fork() == 0:
-		launch_vm(disk, flag, args)
+		launch_vm(disk, args)
 		sys.exit(0)
 
 	if not args.monitor:

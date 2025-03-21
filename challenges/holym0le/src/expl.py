@@ -182,6 +182,7 @@ def main() -> int:
 		return 1
 
 	print(flag.decode())
+	return 0
 
 
 if __name__ == '__main__':

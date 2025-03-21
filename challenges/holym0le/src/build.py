@@ -230,7 +230,7 @@ def patch_bootloader(disk: Path):
 	disk.write_bytes(data)
 
 
-def copy_files_recursive(vmfs: FS, root: Path, cur: Path=None):
+def copy_files_recursive(vmfs: FS, root: Path, cur: Path|None=None):
 	if cur is None:
 		assert root.is_dir()
 		cur = root

@@ -99,7 +99,7 @@ U0 DoCommand() {
 
 The special syntax `switch [n] {...}` with **square brackets** instead of normal
 parentheses (`switch (n) {...}`) is a HolyC-specific construct that instructs
-the compiler to *avoid performing any bonud checking on the value* being
+the compiler to *avoid performing any bound checking on the value* being
 switched on. This is only safe if the `case` statements inside the `switch`
 cover all possible values. Even with a `default` statement, no bound checking is
 performed! Looking at the challenge source code, the only values explicitly
@@ -250,11 +250,11 @@ We can then:
 2. Provide some payload as "book name".
 3. Input `0` as the number of lines to read to avoid further functions calls and
    preserve the `book` pointer on the stack.
-4. Provide some out of bonud command value to hijack the `switch` statement in
+4. Provide some out of bound command value to hijack the `switch` statement in
    the second `DoCommand()` call.
 
 Doing this, we will find ourselves with the stack at the moment of the `JMP RBX`
-looking as follows (putput from pwndbg):
+looking as follows (output from pwndbg):
 
 ```none
 00:0000│ rsp 0x369a20b8 —▸ 0x367aa780 —▸ 0x367b6c28 ◂— 0x367aa780
@@ -496,7 +496,7 @@ the file name or jumping in the middle of the function with the right stack set
 up.
 
 In our shellcode we have free reign. If we decide to manually perform output, we
-only need to be careful and `Yield()` often enoug because TempleOS is *not*
+only need to be careful and `Yield()` often enough because TempleOS is *not*
 preemptive and we can end up deadlocking the system. This is not necessarily
 needed, but can significantly improve the stability of the shellcode.
 
