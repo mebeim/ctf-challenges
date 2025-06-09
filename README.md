@@ -11,11 +11,11 @@ ones soon).
 
 ### License
 
-Check the `LICENSE` file in the directory of each challenge for license
-information. Most of the challenges are licensed under the MIT License.
+The CTF challenges present in this repository are treated as different,
+independent pieces of software. Each challenge carrying its own license. Refer
+to the `LICENSE` file in each directory for more information.
 
-The material surrounding the challenges themselves (such as this file) is
-licensed under the MIT License.
+All other material in this repository is licensed under the MIT License.
 
 ---
 
