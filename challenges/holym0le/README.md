@@ -1,6 +1,8 @@
-# [pwn] HolyM0le - m0leCon CTF 2025 (2 solves)
+# HolyM0le
 
-*Release date: March 20, 2025*
+| Release date   | Event            | Event kind | Category    | Solve stats |
+|:---------------|:-----------------|:-----------|:------------|:------------|
+| March 20, 2025 | m0leCon CTF 2025 | Jeopardy   | pwn, system | 2/10        |
 
 > **11. Thou shalt not pwn this holy program.**
 >
