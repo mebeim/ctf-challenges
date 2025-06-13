@@ -1,0 +1,26 @@
+services:
+  chall:
+    build: .
+    container_name: bdecoder
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/bdecoder:/home/user/bdecoder:ro'
+    ports:
+      - '47006:1337'
+      #- '1234:1234' # Debug
+    command:
+      - '/usr/bin/env'
+      - '-i'
+      - 'PATH=/usr/local/bin:/usr/bin:/bin'
+      - 'qemu-aarch64'
+      #- '-g'   # Debug
+      #- '1234' # Debug
+      - '/home/user/bdecoder'
+    environment:
+      #- 'NETWORK=true' # Debug
+      - 'POW_BITS=30'
+      - 'FLAG=ECSC{[random 8]_P4C_a1nt_g0t_n0th1ng_0n_u_o7_[random 8]}'
+      - 'FORWARD_STDERR=true'
+      - 'TIMEOUT=30'

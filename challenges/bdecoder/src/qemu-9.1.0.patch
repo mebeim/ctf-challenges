@@ -1,0 +1,58 @@
+diff --git a/target/arm/internals.h b/target/arm/internals.h
+index 203a2da..89fcaa9 100644
+--- a/target/arm/internals.h
++++ b/target/arm/internals.h
+@@ -1707,8 +1707,8 @@ bool arm_generate_debug_exceptions(CPUARMState *env);
+  */
+ static inline uint64_t pauth_ptr_mask(ARMVAParameters param)
+ {
+-    int bot_pac_bit = 64 - param.tsz;
+-    int top_pac_bit = 64 - 8 * param.tbi;
++    int bot_pac_bit = 32;
++    int top_pac_bit = 64;
+ 
+     return MAKE_64BIT_MASK(bot_pac_bit, top_pac_bit - bot_pac_bit);
+ }
+diff --git a/target/arm/tcg/pauth_helper.c b/target/arm/tcg/pauth_helper.c
+index c4b1430..5380689 100644
+--- a/target/arm/tcg/pauth_helper.c
++++ b/target/arm/tcg/pauth_helper.c
+@@ -335,15 +335,15 @@ static uint64_t pauth_addpac(CPUARMState *env, uint64_t ptr, uint64_t modifier,
+     int bot_bit, top_bit;
+ 
+     /* If tagged pointers are in use, use ptr<55>, otherwise ptr<63>.  */
+-    if (param.tbi) {
++    if (0) {
+         ext = sextract64(ptr, 55, 1);
+     } else {
+         ext = sextract64(ptr, 63, 1);
+     }
+ 
+     /* Build a pointer with known good extension bits.  */
+-    top_bit = 64 - 8 * param.tbi;
+-    bot_bit = 64 - param.tsz;
++    top_bit = 64;
++    bot_bit = 32;
+     ext_ptr = deposit64(ptr, bot_bit, top_bit - bot_bit, ext);
+ 
+     pac = pauth_computepac(env, ext_ptr, modifier, *key);
+@@ -374,7 +374,7 @@ static uint64_t pauth_addpac(CPUARMState *env, uint64_t ptr, uint64_t modifier,
+     if (pauth_feature >= PauthFeat_2) {
+         pac ^= ptr;
+     }
+-    if (param.tbi) {
++    if (0) {
+         ptr &= ~MAKE_64BIT_MASK(bot_bit, 55 - bot_bit + 1);
+         pac &= MAKE_64BIT_MASK(bot_bit, 54 - bot_bit + 1);
+     } else {
+@@ -418,8 +418,8 @@ static uint64_t pauth_auth(CPUARMState *env, uint64_t ptr, uint64_t modifier,
+ 
+     orig_ptr = pauth_original_ptr(ptr, param);
+     pac = pauth_computepac(env, orig_ptr, modifier, *key);
+-    bot_bit = 64 - param.tsz;
+-    top_bit = 64 - 8 * param.tbi;
++    bot_bit = 32;
++    top_bit = 64;
+ 
+     cmp_mask = MAKE_64BIT_MASK(bot_bit, top_bit - bot_bit);
+     cmp_mask &= ~MAKE_64BIT_MASK(55, 1);

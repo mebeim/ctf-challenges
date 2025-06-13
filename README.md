@@ -6,6 +6,7 @@ ones soon).
 | Date       | Event                  | Challenge                                                                                        | Category          |
 |:-----------|:-----------------------|:-------------------------------------------------------------------------------------------------|:------------------|
 | 2025-03-20 | m0leCon CTF 2025       | HolyM0le — [source](./challenges/holym0le) / [writeup](./challenges/holym0le/README.md)          | pwn, system       |
+| 2024-10-09 | ECSC 2024 Jeopardy CTF | Bdecoder — [source](./challenges/bdecoder) / [writeup](./challenges/bdecoder/README.md)          | pwn               |
 | 2024-10-09 | ECSC 2024 Jeopardy CTF | Jailguesser — [source](./challenges/jailguesser) / [writeup](./challenges/jailguesser/README.md) | misc, programming |
 
 
