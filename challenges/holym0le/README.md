@@ -1,4 +1,5 @@
-# HolyM0le
+HolyM0le
+========
 
 | Release date   | Event            | Event kind | Category    | Solve stats |
 |:---------------|:-----------------|:-----------|:------------|:------------|
@@ -10,7 +11,9 @@
 > nc holym0le.challs.m0lecon.it 15184
 > ```
 
-## Description
+
+Description
+-----------
 
 The challenge consists in a TempleOS program written in HolyC, whose source code
 is provided in the FAT filesystem of a QEMU disk (`.qcow2`) where TempleOS is
@@ -62,7 +65,9 @@ them in detail, but you can check
 should be easy to understand. I will only talk about the few bits of useful code
 later on as needed.
 
-## Bug
+
+Bug
+---
 
 There is only one subtle bug in the whole program, which may not be obvious only
 looking at the source code. It comes from the incorrect usage of the special
@@ -156,7 +161,9 @@ range will make the program *access the jump offset table out of bounds* and
 pick an unexpected 16-bit signed integer from wherever we want (we have a 64-bit
 value that we can use as index, so we can read from anywhere in memory).
 
-## Solution
+
+Solution
+--------
 
 Even though the compilation is done just-in-time at boot when `Challenge.HC` is
 included, the TempleOS compiler almost always chooses the same address for the
@@ -267,7 +274,7 @@ looking as follows (output from pwndbg):
 ```
 
 At RSP+0x10 (RBP-0x08) we have the `book` pointer holding the last book name we
-privided.
+provided.
 
 ### Finding the right gadget
 
@@ -398,7 +405,7 @@ we can calculate that the offset needed for the jump is
 `0x3677bcf1 - 0x3677bd46 == -85` (or `0xffab` as unsigned 16-bit integer).
 
 Since we read the jump offset with `movsx rbx,WORD PTR [rsi*2+0x3677bf0b]`, we
-can read from any odd memory address, privided the right value for RSI (`n`).
+can read from any odd memory address, provided the right value for RSI (`n`).
 One good place to look at is low memory addresses that contain TempleOS kernel
 code, which is fixed as the kernel is a precompiled binary blob and TempleOS
 does not use any kind of address randomization. Another alternative if we don't
