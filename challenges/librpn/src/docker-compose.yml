@@ -1,0 +1,17 @@
+services:
+  chall:
+    image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
+    container_name: librpn
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './librpn.so:/home/user/librpn.so:ro'
+      - './calculator.py:/home/user/calculator.py:ro'
+    ports:
+      - '1337:1337'
+    command:
+      - '/home/user/calculator.py'
+    environment:
+      - 'FLAG=TEC{NoOo00OoOo0ooO00o0Oo0oOoo nOOooOo0O0oOo la polizia noo0Segmentation fault (core dumped)}'
+      - 'TIMEOUT=30'
