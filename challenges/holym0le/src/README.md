@@ -24,8 +24,8 @@ Building
 
 Build dependencies: the Python modules in `requirements.txt`.
 
-Use `make` to build the challenge and also the final attachment to distribute to
-players.
+Use `make` to build the challenge and also the final `holym0le.tar.gz` archive
+to distribute to players.
 
 The [`build.py`](./build.py) script is responsible for the actual build (see
 `./build.py --help` for more info). The final product of the build are **two**
@@ -54,8 +54,7 @@ The files that should be distributed to the players are:
 - `docker-compose.yml`
 - `run.py`
 
-And they will be compressed into `../attachments/holym0le.tar.gz` after
-building with `make`.
+And they will be compressed into `holym0le.tar.gz` after building with `make`.
 
 
 Running
