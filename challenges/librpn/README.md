@@ -23,8 +23,8 @@ The two main components of the challenge are:
   formulas with common infix oprators (`+`, `-`, `*`, `/`, `%`), parentheses
   (`(`, `)`) and support for function calls (`fn(...)`).
 
-  This script is manages user input/ouput, parsing and validating expressions
-  taken from standard input (one per line). Input is passed through a simple
+  This script manages user input/ouput, parsing and validating expressions taken
+  from standard input (one per line). Input is passed through a simple
   tokenizer, which instantiates Python classes for each token. Tokens are then
   parsed using the [shunting yard algorithm][wiki-shunting-yard] to convert
   expressions from infix notation into [reverse Polish notation][wiki-rpn] (RPN)
@@ -93,11 +93,12 @@ RPN expressions are evaluated by librpn using a simple stack based machine:
 > [!NOTE]
 > **Author's note**: the `%` operator is (mistakenly) not implemented in librpn
 > and thus ends up being parsed as a 64-bit integer via `strtoll()`, becoming a
-> zero value. This is unintended, but doesn't affect the challenge.
+> zero value. This is unintended, but doesn't affect other funcionality nor the
+> challenge solution.
 
 
-Bug
----
+Bugs
+----
 
 As said above, RPN expression evaluation in librpn is implemented via a stack
 based machine. The `eval_expression()` function allocates the initial value
@@ -157,7 +158,7 @@ For example the expression in the following function definition:
 > fn foo(a, b) { 1 + (a + b) }
 ```
 
-Is into RPN and passed to `create_function()` as:
+Is converted to RPN and passed to `create_function()` as:
 
 ```c
 char *expr[] = {"1", "a", "b", "+", "+", NULL};
@@ -167,6 +168,40 @@ The calculated maximum stack size will be 1 slot (8 bytes). Evaluating an
 expression like `foo(1, 2)` will result in OOB writes past the end of the
 heap-allocated function stack (3 writes to be precise, because after parameter
 values are pushed, the first `+` operator will also write out of bounds).
+
+### Unintended Bug
+
+There is unfortunalely a second unintended bug in librpn: in
+`eval_expression()`, when the value stack is full, a bigger one is allocated via
+`calloc()`, but then mistakenly freed immediately after, instead of freeing the
+old stack:
+
+```c
+if (sp >= stack_len) {
+    stack_len *= 2;
+    tmp = calloc(stack_len, sizeof(*stack));
+    if (!tmp)
+        errx(1, "Memory allocation failure");
+
+    stack = tmp; // These two lines should be swapped!
+    free(stack);
+}
+```
+
+This only happens when the initial `stack_len` of 256 slots is exceeded, and
+results in an immediate use-after-free of the stack while the rest of the
+expression is evaluated, plus a double free when evaluation is done. However, it
+should not be possible to exploit this bug: no other allocations are made within
+an `eval_expression()` call, no code runs concurrently, and the double free is
+caught immediately by the musl allocator aborting execution (mallocng uses
+out-of-band bitmasks to keep track of allocated chunks, making double free
+detection very simple and reliable).
+
+Technically speaking, it should be possible to corrupt out-of-band heap metadata
+via arbitrary write during function evaluation (see
+[Arbitrary Write](#arbitrary-write) section below) to avoid double free
+detection, but such an operation would only overcomplicate an already complete
+exploit.
 
 
 Solution
@@ -189,7 +224,7 @@ arbitrary Python objects. While corrupting Python objects *might be* a viable
 solution, it is not the way to go. Instead, we need to focus on simpler objects
 on the interpreter heap, like the ones allocated by librpn.
 
-### Memory corruption
+### Memory Corruption
 
 User-defined functions in librpn are saved in a global linked list and are
 represented like this:
@@ -250,7 +285,7 @@ The first 3 fields of `struct Function` are:
 - `stack`: the function value stack, which has no special constraint and only
   needs to point to RW memory.
 
-### ASLR leak
+### ASLR Leak
 
 Controlling the `->stack` pointer of a function gives us an arbitrary write
 primitive when the function is evaluated, but we need to know where to point it.
@@ -267,7 +302,7 @@ objects in the right way to obtain a leak, or... take a closer look and see if
 we already have one available. Spoiler: yes, we do.
 
 The `calculator.py` script handles runtime exceptions with a couple of
-`try...except` blocks in `eval_stmt()`, the seconf of which is:
+`try...except` blocks in `eval_stmt()`, the second of which is:
 
 ```py
 try:
@@ -353,7 +388,7 @@ its offset from `librpn.so` is quite stable, with only a few bits of randomness.
 The offset from `librpn.so` to any other other dynamic library is fixed as they
 are mapped contiguously, so this means we know the position of all of them.
 
-### Arbitrary write
+### Arbitrary Write
 
 Arbitrary write can now be achieved as follows:
 
@@ -404,7 +439,7 @@ by simply creating a function with the name we need first.
 After calling `X` to corrupt `victim` pointing `victim->stack` where we want, we
 can then call `victim` *using its new name* and trigger the arbitrary write.
 
-### Code execution
+### Arbitrary Code Execution
 
 The `python3` ELF and all the dynamic libraries it loads are compiled with full
 RELRO, so their Global Offset Tables are all read-only. However, `librpn.so` is
