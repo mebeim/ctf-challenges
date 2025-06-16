@@ -1,18 +1,19 @@
 # My CTF Challenges
 
 Collection of CTF challenges I have written (work in progress, will add older
-ones soon).
+ones over time).
 
-| Date       | Event                                    | Challenge                               | Category          |
-|:-----------|:-----------------------------------------|:----------------------------------------|:------------------|
-| 2025-09-20 | [Ctrl+Space CTF][ctrl-space] Quals 2025  | [Cosmic Ray](./challenges/cosmic-ray)   | pwn               |
-| 2025-07-19 | [ToH CTF 2025][ctftime-toh-2025]         | [PPC64LEL](./challenges/ppc64lel)       | rev               |
-| 2025-06-14 | [ICC][icc] Team EU Qualifier 2025        | [librpn](./challenges/librpn)           | pwn               |
-| 2025-03-20 | [m0leCon CTF 2025][ctftime-m0lecon-2025] | [HolyM0le](./challenges/holym0le)       | pwn, system       |
-| 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF      | [Bdecoder](./challenges/bdecoder)       | pwn               |
-| 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF      | [Jailguesser](./challenges/jailguesser) | misc, programming |
-| 2024-09-21 | [openECSC 2024][openecsc-2024] Round 4   | [Backfired](./challenges/backfired)     | pwn, v8           |
-| 2024-03-18 | [openECSC 2024][openecsc-2024] Round 1   | [No Headache](./challenges/no-headache) | pwn               |
+| Date       | Event                                        | Challenge                               | Category          |
+|:-----------|:---------------------------------------------|:----------------------------------------|:------------------|
+| 2025-09-20 | [Ctrl+Space CTF][ctrl-space] Quals 2025      | [Cosmic Ray](./challenges/cosmic-ray)   | pwn               |
+| 2025-07-19 | [ToH CTF 2025][ctftime-toh-2025]             | [PPC64LEL](./challenges/ppc64lel)       | rev               |
+| 2025-06-14 | [ICC][icc] Team EU Qualifier 2025            | [librpn](./challenges/librpn)           | pwn               |
+| 2025-06-07 | [ECSC Team Italy][team-italy] Qualifier 2025 | [BigMistake](./challenges/bigmistake)   | pwn               |
+| 2025-03-20 | [m0leCon CTF 2025][ctftime-m0lecon-2025]     | [HolyM0le](./challenges/holym0le)       | pwn, system       |
+| 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF          | [Bdecoder](./challenges/bdecoder)       | pwn               |
+| 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF          | [Jailguesser](./challenges/jailguesser) | misc, programming |
+| 2024-09-21 | [openECSC 2024][openecsc-2024] Round 4       | [Backfired](./challenges/backfired)     | pwn, v8           |
+| 2024-03-18 | [openECSC 2024][openecsc-2024] Round 1       | [No Headache](./challenges/no-headache) | pwn               |
 
 
 ### Licensing

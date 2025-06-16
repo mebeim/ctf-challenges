@@ -1,0 +1,14 @@
+services:
+  chall:
+    image: cybersecnatlab/challenge-jail:ubuntu-noble@sha256:2d1e046fa7bb27a6b7d1dba44379b722c0498b40bf9db1a84c47be1ecc09752a
+    container_name: BigMistake
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './build/BigMistake:/home/user/chall:ro'
+    ports:
+      - '1337:1337'
+    environment:
+      - 'FLAG=TeamItaly{Th4t_B1gIn7_U4F_w4s_s0m3_B1gM1st4ke_[random 16]}'
+      - 'TIMEOUT=30'
