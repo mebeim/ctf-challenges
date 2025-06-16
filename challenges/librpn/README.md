@@ -171,10 +171,13 @@ values are pushed, the first `+` operator will also write out of bounds).
 
 ### Unintended Bug
 
-There is unfortunalely a second unintended bug in librpn: in
-`eval_expression()`, when the value stack is full, a bigger one is allocated via
-`calloc()`, but then mistakenly freed immediately after, instead of freeing the
-old stack:
+*This bug is no longer present in the current version of the source code, but
+was originally present when the challenge was released.*
+
+The original version of the challenge unfortunalely had a second unintended bug
+in librpn: in `eval_expression()`, when the value stack is full, a bigger one is
+allocated via `calloc()`, but then mistakenly freed immediately after, instead
+of freeing the old stack:
 
 ```c
 if (sp >= stack_len) {

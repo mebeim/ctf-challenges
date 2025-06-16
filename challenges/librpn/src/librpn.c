@@ -315,8 +315,13 @@ int eval_expression(char **expr, int64_t *out) {
 			if (!tmp)
 				errx(1, "Memory allocation failure");
 
+			/* Unintended bug in original version, fixed in current version:
 			stack = tmp;
 			free(stack);
+			 */
+
+			free(stack);
+			stack = tmp;
 		}
 
 		// Number
