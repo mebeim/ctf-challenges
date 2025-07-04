@@ -17,7 +17,7 @@ class Exploit:
 
 		try:
 			context.binary = self.librpn = ELF('./src/librpn.so', checksec=False)
-			assert self.librpn.relro == 'Full', 'librpn.so should not be Full RELRO!'
+			assert self.librpn.relro != 'Full', 'librpn.so should not be Full RELRO!'
 		except FileNotFoundError:
 			sys.exit('Need ./src/librpn.so: compile the challenge first!')
 
