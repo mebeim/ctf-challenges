@@ -1,9 +1,11 @@
 Bdecoder
 ========
 
-| Release date    | Event                  | Event kind | Category | Solve stats |
-|:----------------|:-----------------------|:-----------|:---------|:------------|
-| October 9, 2024 | ECSC 2024 Jeopardy CTF | Jeopardy   | pwn      | 2/37        |
+| Release date    | Event                               | Event kind | Category | Solve stats |
+|:----------------|:------------------------------------|:-----------|:---------|:------------|
+| October 9, 2024 | [ECSC 2024][ecsc-2024] Jeopardy CTF | Jeopardy   | pwn      | 2/37        |
+
+[ecsc-2024]: https://ecsc2024.it/
 
 > I built the fastest and most secure bencode decoder out there. Wanna take it for
 > a spin?

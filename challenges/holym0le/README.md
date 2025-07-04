@@ -1,9 +1,11 @@
 HolyM0le
 ========
 
-| Release date   | Event            | Event kind | Category    | Solve stats |
-|:---------------|:-----------------|:-----------|:------------|:------------|
-| March 20, 2025 | m0leCon CTF 2025 | Jeopardy   | pwn, system | 2/10        |
+| Release date   | Event                                    | Event kind | Category    | Solve stats |
+|:---------------|:-----------------------------------------|:-----------|:------------|:------------|
+| March 20, 2025 | [m0leCon CTF 2025][ctftime-m0lecon-2025] | Jeopardy   | pwn, system | 2/10        |
+
+[ctftime-m0lecon-2025]: https://ctftime.org/event/2725
 
 > **11. Thou shalt not pwn this holy program.**
 >

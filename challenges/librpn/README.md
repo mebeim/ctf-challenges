@@ -1,9 +1,11 @@
 librpn
 ======
 
-| Release date  | Event                          | Event kind           | Category | Solve stats |
-|:--------------|:-------------------------------|:---------------------|:---------|:------------|
-| June 14, 2025 | ICC Team Europe Qualifier 2025 | Jeopardy, individual | pwn      | 3/50+       |
+| Release date  | Event                                 | Event kind           | Category | Solve stats |
+|:--------------|:--------------------------------------|:---------------------|:---------|:------------|
+| June 14, 2025 | [ICC][icc] Team Europe Qualifier 2025 | Jeopardy, individual | pwn      | 3/50+       |
+
+[icc]: https://icc.ecsc.eu/
 
 > Since Python is known to be very slow, I'm in the process of converting my
 > CLI calculator into a native C library. I'm halfway there, and so far it looks

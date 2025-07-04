@@ -1,9 +1,11 @@
 Jailguesser
 ===========
 
-| Release date    | Event                  | Event kind | Category          | Solve stats |
-|:----------------|:-----------------------|:-----------|:------------------|:------------|
-| October 9, 2024 | ECSC 2024 Jeopardy CTF | Jeopardy   | misc, programming | 1/37        |
+| Release date    | Event                               | Event kind | Category          | Solve stats |
+|:----------------|:------------------------------------|:-----------|:------------------|:------------|
+| October 9, 2024 | [ECSC 2024][ecsc-2024] Jeopardy CTF | Jeopardy   | misc, programming | 1/37        |
+
+[ecsc-2024]: https://ecsc2024.it/
 
 > Wanna play a guessing game?
 >
