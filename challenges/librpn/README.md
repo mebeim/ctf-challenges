@@ -270,7 +270,7 @@ close together:
 ```none
 a: 0x7f114ad96220, stack: 0x7f114ad96260 <--- a->stack right before b
 b: 0x7f114ad962a0, stack: 0x7f114ad962e0
-c: 0x7f114ad96320, stack: 0x7f114ad96360 <--- c->stack right before a
+c: 0x7f114ad96320, stack: 0x7f114ad96360 <--- c->stack right before d
 d: 0x7f114ad963a0, stack: 0x7f114ad96df0
 e: 0x7f114ad96e30, stack: 0x7f114ad96e70 <--- e->stack righe before f
 f: 0x7f114ad96eb0, stack: 0x7f114ad96ef0
