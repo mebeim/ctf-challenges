@@ -187,7 +187,7 @@ CPU capable of changing endianness at runtime through the toggling of a special
 machine state register bit (only possible in supervisor mode, hence the
 syscall).
 
-What happens when endian is switched? Well, more or less what'd you expect:
+What happens when endianness is switched? Well, more or less what'd you expect:
 anything the CPU reads/writes from/to memory is now interpreted as the opposite
 endiannes. This includes instruction fetching: the first instruction after `sc`
 is `0x08000048` i.e. `tdi 0,r0,0x48` in litle-endian mode, but becomes
@@ -224,8 +224,8 @@ scattered everywhere in the `.text` section of the original binary:
 
 We are dealing with a tree of function calls where endianness may be switched
 between each call. What if we want to debug the program while it's running to
-see the actual code being executed, and what exactly is going on? We can do it,
-as long as we are careful about endian switches.
+see the actual code being executed? We can do it, as long as we are careful
+about endian switches.
 
 QEMU user does not know about `switch_endian`, so we have to resort to QEMU
 system. A simple Debian 12 PPC64LE image as shown in the handout README will
@@ -268,7 +268,7 @@ Single stepping past the `sc` instruction at `0x10000fd8` is not possible
 because GDB will follow the VM into kernel space and step into syscall handler
 code. A breakpoint for `0x10000fdc` can be inserted, but onece the syscall is
 executed and the breakpoint is hit, all the registers will be in the wrong
-endianness so we must tell GDB to explicitly switch endianness.
+endianness, so we must tell GDB to explicitly switch endianness.
 
 ```none
 (gdb) b *0x10000fdc
@@ -335,7 +335,7 @@ Each function checks between 1 and 6 bits of the key, and there are a lot
 of functions. To automate analysis we have two main approaches:
 
 1. Figure out a way to statically analyze the binary, recognizing and
-   byte-swap big-endian instructions where needed, turning all code into
+   byte-swapping big-endian instructions where needed, turning all code into
    little-endian. Once this is done, the program could theoretically be fed to
    a symbolic execution tool like [angr](https://angr.io/) to calculate the key,
    or even statically analyzed again to extract the key checks programmatically.
