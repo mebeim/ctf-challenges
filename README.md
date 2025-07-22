@@ -5,7 +5,7 @@ ones soon).
 
 | Date       | Event                                    | Challenge                               | Category          |
 |:-----------|:-----------------------------------------|:----------------------------------------|:------------------|
-| 2025-07-19 | [ToH CTF 2025][ctftime-toh-2025]         | [PPC64LEL](./challenges/PPC64LEL)       | rev               |
+| 2025-07-19 | [ToH CTF 2025][ctftime-toh-2025]         | [PPC64LEL](./challenges/ppc64lel)       | rev               |
 | 2025-06-14 | [ICC][icc] Team EU Qualifier 2025        | [librpn](./challenges/librpn)           | pwn               |
 | 2025-03-20 | [m0leCon CTF 2025][ctftime-m0lecon-2025] | [HolyM0le](./challenges/holym0le)       | pwn, system       |
 | 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF      | [Bdecoder](./challenges/bdecoder)       | pwn               |
