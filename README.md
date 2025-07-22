@@ -11,6 +11,7 @@ ones soon).
 | 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF          | Bdecoder — [source](./challenges/bdecoder) / [writeup](./challenges/bdecoder/README.md)          | pwn               |
 | 2024-10-09 | [ECSC 2024][ecsc-2024] Jeopardy CTF          | Jailguesser — [source](./challenges/jailguesser) / [writeup](./challenges/jailguesser/README.md) | misc, programming |
 | 2024-09-21 | [openECSC 2024][openecsc-2024] Round 4       | Backfired — [source](./challenges/backfired) / [writeup](./challenges/backfired/README.md)       | pwn, v8           |
+| 2024-03-18 | [openECSC 2024][openecsc-2024] Round 1       | No Headache — [source](./challenges/no-headache) / [writeup](./challenges/no-headache/README.md) | pwn               |
 
 
 ### Licensing
