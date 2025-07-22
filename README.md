@@ -13,13 +13,17 @@ ones soon).
 | 2024-09-21 | [openECSC 2024][openecsc-2024] Round 4       | Backfired — [source](./challenges/backfired) / [writeup](./challenges/backfired/README.md)       | pwn, v8           |
 
 
-### License
+### Licensing
 
 The CTF challenges present in this repository are treated as different,
 independent pieces of software. Each challenge carrying its own license. Refer
 to the `LICENSE` file in each directory for more information.
 
 All other material in this repository is licensed under the MIT License.
+
+Feel free to use the material in this repository for your own CTFs or tranings,
+respecting the license associated with each challenge and giving the appropriate
+credit to the author (me).
 
 ---
 
