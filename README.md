@@ -5,6 +5,7 @@ ones soon).
 
 | Date       | Event                                    | Challenge                               | Category          |
 |:-----------|:-----------------------------------------|:----------------------------------------|:------------------|
+| 2025-09-20 | [Ctrl+Space CTF][ctrl-space] Quals 2025  | [Cosmic Ray](./challenges/cosmic-ray)   | pwn               |
 | 2025-07-19 | [ToH CTF 2025][ctftime-toh-2025]         | [PPC64LEL](./challenges/ppc64lel)       | rev               |
 | 2025-06-14 | [ICC][icc] Team EU Qualifier 2025        | [librpn](./challenges/librpn)           | pwn               |
 | 2025-03-20 | [m0leCon CTF 2025][ctftime-m0lecon-2025] | [HolyM0le](./challenges/holym0le)       | pwn, system       |
@@ -38,3 +39,4 @@ credit to the author (me).
 [ecsc-2024]: https://ecsc2024.it/
 [ecsc]: https://ecsc.eu/
 [icc]: https://icc.ecsc.eu/
+[ctrl-space]: https://ctrl-space.gg/

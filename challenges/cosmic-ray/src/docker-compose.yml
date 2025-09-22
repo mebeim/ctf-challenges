@@ -1,0 +1,7 @@
+services:
+  chall:
+    build: .
+    container_name: 'cosmic-ray'
+    read_only: true
+    ports:
+      - '1337:1337'
