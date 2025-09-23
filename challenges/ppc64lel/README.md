@@ -225,7 +225,7 @@ scattered everywhere in the `.text` section of the original binary:
 We are dealing with a tree of function calls where endianness may be switched
 between each call. What if we want to debug the program while it's running to
 see the actual code being executed? We can do it, as long as we are careful
-about endian switches.
+about endianness switches.
 
 QEMU user does not know about `switch_endian`, so we have to resort to QEMU
 system. A simple Debian 12 PPC64LE image as shown in the handout README will
@@ -254,7 +254,7 @@ chmod +x PPC64LEL
 
 The tricky part is that, if we put breakpoints into code that will later run in
 a different endianness, we also need to explicitly tell GDB to change endianness
-via `set endian {bit|little}`. For example, here:
+via `set endian {big|little}`. For example, here:
 
 ```none
 10000fd0 01 fe 21 f8    stdu       r1,local_200(r1)
