@@ -294,7 +294,7 @@ rays to edit existing bytecode at will.
 If we take a look at the bytecode for the `cosmic_ray()` function using
 [`dis.dis()`][py-dis-dis] we can see a few interesting spots where flipping a
 bit would result in bypassing the global variable check, allowing infinite
-"cosmic rays" to hit. We can also access the raw bytecode as a `bytes` objects
+"cosmic rays" to hit. We can also access the raw bytecode as a `bytes` object
 via `cosmic_ray.__code__.co_code` to check actual opcodes and arguments.
 
 Some interestig opcodes to consider for the bit flip are right at the start and
