@@ -1,0 +1,17 @@
+services:
+  chall:
+    build: .
+    container_name: snek
+    restart: unless-stopped
+    init: true
+    privileged: true
+    volumes:
+      - './game:/home/user:ro'
+    ports:
+      - '1337:1337'
+    command:
+      - '/home/user/server.py'
+    environment:
+      - 'TEMPDIRS=/tmp'
+      - 'TEMPDIRS_SIZE=16000000'
+      - 'TIMEOUT=60'

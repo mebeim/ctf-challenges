@@ -1,0 +1,10 @@
+# Build goes in game/ except server.py which is already there.
+/game/*
+!/game/server.py
+
+/src/textures.h
+/src/*.o
+/src/*.d
+
+/snek
+/snek.tar.gz
