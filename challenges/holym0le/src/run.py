@@ -70,8 +70,6 @@ def launch_vm(disk: Path, args: argparse.Namespace):
 	if args.monitor:
 		argv += ['-monitor', 'stdio']
 
-	# Make sure QEMU stops when the parent (this script) dies
-	libc.prctl(PR_SET_PDEATHSIG, SIGTERM)
 	os.execvp(argv[0], argv)
 
 
@@ -87,6 +85,9 @@ def main():
 	disk = Path(args.disk)
 	if not disk.is_file():
 		sys.exit(f'Disk not found or not a file: {disk}')
+
+	# Make sure QEMU stops when the parent (this script) dies
+	libc.prctl(PR_SET_PDEATHSIG, SIGTERM)
 
 	if os.fork() == 0:
 		launch_vm(disk, args)
