@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://42318vnac1ky"]
+
+[ext_resource type="Script" uid="uid://cdrkdxkpwlxvs" path="res://scripts/asteroid.gd" id="1_ro5qx"]
+[ext_resource type="Texture2D" uid="uid://k1snvgj3exi0" path="res://assets/keycap.svg" id="2_ro5qx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nioq4"]
+font_size = 24
+
+[node name="Asteroid" type="Area2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_ro5qx")
+size = null
+direction = null
+
+[node name="Body" type="Sprite2D" parent="."]
+modulate = Color(0.972549, 0.894118, 0, 1)
+scale = Vector2(0.705128, 0.705128)
+texture = ExtResource("2_ro5qx")
+
+[node name="Key" type="Label" parent="Body"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.3545
+offset_top = -36.1
+offset_right = -0.354546
+offset_bottom = -5.1
+grow_horizontal = 2
+grow_vertical = 2
+text = "*"
+label_settings = SubResource("LabelSettings_nioq4")
+horizontal_alignment = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(-9.53674e-07, 2.6226e-06)
+scale = Vector2(0.756579, 0.756579)
+polygon = PackedVector2Array(14, 19, -14, 19, -19, 14, -19, -14, -14, -19, 14, -19, 19, -14, 19, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

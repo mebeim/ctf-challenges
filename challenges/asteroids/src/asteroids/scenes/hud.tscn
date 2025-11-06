@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://bh2ipy8tamrdj"]
+
+[ext_resource type="FontFile" uid="uid://dom3d1bgvvnhi" path="res://assets/DSEG14Classic-Regular.woff2" id="1_5ysmq"]
+[ext_resource type="Script" uid="uid://q2crok8t1kc5" path="res://scripts/hud.gd" id="1_6fi6k"]
+[ext_resource type="Shader" uid="uid://1xg6ss0nv5g8" path="res://resources/flag.gdshader" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://dwx3u0oghd2cl" path="res://assets/progress.svg" id="3_uo2fv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_trtic"]
+font = ExtResource("1_5ysmq")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_ir15t"]
+font = ExtResource("1_5ysmq")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_uo2fv"]
+font = ExtResource("1_5ysmq")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_ca42v"]
+font = ExtResource("1_5ysmq")
+font_size = 24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trtic"]
+shader = ExtResource("3_5ysmq")
+shader_parameter/min_alpha = 0.3
+shader_parameter/max_alpha = 1.0
+shader_parameter/wave = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0tnpc"]
+font = ExtResource("1_5ysmq")
+font_size = 24
+font_color = Color(0.869406, 0.764845, 0.0894396, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6fi6k")
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 110.0
+offset_bottom = 52.0
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_trtic")
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 10.0
+offset_right = 620.0
+offset_bottom = 52.0
+text = "0"
+label_settings = SubResource("LabelSettings_ir15t")
+
+[node name="AsteroidIcon" type="Line2D" parent="."]
+position = Vector2(24, 64)
+points = PackedVector2Array(14, -9, 14, 8, -3, 14, -3, 8, -14, 1, -8, -14)
+closed = true
+width = 2.0
+
+[node name="AsteroidsExplodedLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 52.0
+offset_right = 81.0
+offset_bottom = 81.0
+text = "X"
+label_settings = SubResource("LabelSettings_uo2fv")
+
+[node name="AsteroidsExploded" type="Label" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 52.0
+offset_right = 394.0
+offset_bottom = 94.0
+text = "0"
+label_settings = SubResource("LabelSettings_uo2fv")
+
+[node name="Progress" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 30.925
+anchor_top = 0.5
+anchor_right = 30.925
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0%"
+label_settings = SubResource("LabelSettings_ca42v")
+horizontal_alignment = 2
+
+[node name="ProgressIcon" type="Sprite2D" parent="."]
+position = Vector2(1256, 26.8019)
+scale = Vector2(0.459907, 0.459906)
+texture = ExtResource("3_uo2fv")
+
+[node name="Flag" type="Label" parent="."]
+material = SubResource("ShaderMaterial_trtic")
+layout_mode = 0
+offset_top = 677.0
+offset_right = 1280.0
+offset_bottom = 710.0
+text = "****************************************************************"
+label_settings = SubResource("LabelSettings_0tnpc")
+horizontal_alignment = 1
+vertical_alignment = 2

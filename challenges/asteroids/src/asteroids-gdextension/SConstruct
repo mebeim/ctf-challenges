@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+#
+# @mebeim - 2025-09-07
+#
+
+EXTENSION_DIR = '.'
+GAME_DIR      = '../asteroids'
+GODOT_CPP_DIR = '../godot-cpp'
+LIBNAME       = 'libachievementmanager'
+
+env      = SConscript(f'{GODOT_CPP_DIR}/SConstruct')
+platform = env['platform']
+target   = env['target']
+
+if 'debug' in target:
+	env['CXXFLAGS'].append('-g')
+
+# Do not optimize and don't strip, regardless of build type (debug/release).
+# We don't want to create a C++ reversing nightmare. Nonetheless, debug symbols
+# will only be kept in debug builds.
+env['CXXFLAGS'].append('-O0')
+env['LINKFLAGS'].remove('-s')
+
+env.Append(CPPPATH=[EXTENSION_DIR])
+sources = Glob(f'{EXTENSION_DIR}/*.cc')
+sources.extend(Glob(f'{EXTENSION_DIR}/**/*.cc'))
+
+if platform == 'macos':
+	library = env.SharedLibrary(
+		f'{GAME_DIR}/bin/{LIBNAME}.{platform}.{target}.framework/{LIBNAME}.{platform}.{target}',
+		source=sources,
+	)
+elif platform == 'ios':
+	if env['ios_simulator']:
+		library = env.StaticLibrary(
+			f'{GAME_DIR}/bin/{LIBNAME}.{platform}.{target}.simulator.a',
+			source=sources,
+		)
+	else:
+		library = env.StaticLibrary(
+			f'{GAME_DIR}/bin/{LIBNAME}.{platform}.{target}.a',
+			source=sources,
+		)
+else:
+	library = env.SharedLibrary(
+		f'{GAME_DIR}/bin/{LIBNAME}{env["suffix"]}{env["SHLIBSUFFIX"]}',
+		source=sources,
+	)
+
+Default(library)

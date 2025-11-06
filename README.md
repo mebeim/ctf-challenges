@@ -5,6 +5,7 @@ ones over time).
 
 | Date       | Event                                                  | Challenge                               | Category          |
 |:-----------|:-------------------------------------------------------|:----------------------------------------|:------------------|
+| 2025-11-04 | [Ctrl+Space CTF][ctrl-space] Finals 2025               | [Asteroids](./challenges/asteroids)     | rev               |
 | 2025-10-24 | [m0leCon CTF 2026 Teaser][ctftime-m0lecon-2026-teaser] | [Snek](./challenges/snek)               | pwn               |
 | 2025-09-20 | [Ctrl+Space CTF][ctrl-space] Quals 2025                | [Cosmic Ray](./challenges/cosmic-ray)   | pwn               |
 | 2025-07-19 | [ToH CTF 2025][ctftime-toh-2025]                       | [PPC64LEL](./challenges/ppc64lel)       | rev               |

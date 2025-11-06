@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkdpnvjftawhf"]
+
+[ext_resource type="FontFile" uid="uid://dom3d1bgvvnhi" path="res://assets/DSEG14Classic-Regular.woff2" id="1_iwahs"]
+[ext_resource type="Script" uid="uid://u6kwerl7hcm" path="res://scripts/game_over_screen.gd" id="1_wa2qn"]
+[ext_resource type="AudioStream" uid="uid://bbm7m1e2vocrl" path="res://assets/game_over_lose.wav" id="2_jw6e5"]
+[ext_resource type="AudioStream" uid="uid://6w77rxdlvjtv" path="res://assets/game_over_win.wav" id="3_wa2qn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vnjk"]
+font = ExtResource("1_iwahs")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwahs"]
+font = ExtResource("1_iwahs")
+font_size = 30
+font_color = Color(0.88483, 0.218712, 0.117034, 1)
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wa2qn")
+
+[node name="GameOverText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -129.0
+offset_right = 269.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_4vnjk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverSubtitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.0
+offset_top = -20.0
+offset_right = 288.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MISION:  FAILED"
+label_settings = SubResource("LabelSettings_iwahs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 44.0
+offset_right = 101.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_iwahs")
+theme_override_font_sizes/font_size = 24
+text = "PLAY AGAIN"
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="GameOverLose" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("2_jw6e5")
+volume_db = -6.0
+
+[node name="GameOverWin" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_wa2qn")
+volume_db = -4.0
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]

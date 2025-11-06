@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv6vwkkj1bafb"]
+
+[ext_resource type="FontFile" uid="uid://dom3d1bgvvnhi" path="res://assets/DSEG14Classic-Regular.woff2" id="1_ah4h2"]
+[ext_resource type="Script" uid="uid://72h02xrdfmce" path="res://scripts/achievement_popup.gd" id="1_g3gl2"]
+[ext_resource type="Texture2D" uid="uid://dwx3u0oghd2cl" path="res://assets/progress.svg" id="2_uqeqe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6fi6k"]
+font = ExtResource("1_ah4h2")
+font_size = 20
+font_color = Color(0.869406, 0.764845, 0.0894396, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nkkgm"]
+font = ExtResource("1_ah4h2")
+font_size = 28
+font_color = Color(0.869406, 0.764845, 0.0894396, 1)
+
+[node name="AchievementPopup" type="Node2D"]
+position = Vector2(640, 360)
+script = ExtResource("1_g3gl2")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.870588, 0.764706, 0.0901961, 0.196078)
+position = Vector2(0, 10)
+scale = Vector2(1.76651, 1.76651)
+texture = ExtResource("2_uqeqe")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -640.0
+offset_top = -27.0
+offset_right = 640.0
+offset_bottom = 3.0
+text = "NEW  ACHIEVEMENT"
+label_settings = SubResource("LabelSettings_6fi6k")
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="."]
+offset_left = -640.0
+offset_top = 8.0
+offset_right = 640.0
+offset_bottom = 38.0
+pivot_offset = Vector2(640, 360)
+text = "NAME HERE"
+label_settings = SubResource("LabelSettings_nkkgm")
+horizontal_alignment = 1

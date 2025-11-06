@@ -1,0 +1,11 @@
+*.o
+*.os
+*.obj
+*.so
+*.dll
+*.exe
+/.sconsign.dblite
+
+# Achievement code generated at build time (gen_achievements.py)
+/achievements/*_achieve.cc
+/achievements/*_params.h

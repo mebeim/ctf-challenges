@@ -1,0 +1,136 @@
+[gd_scene load_steps=16 format=3 uid="uid://odfrj3jehgcv"]
+
+[ext_resource type="PackedScene" uid="uid://cjt8tmf2pac00" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://mpmb3gqeumgp" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bh2ipy8tamrdj" path="res://scenes/hud.tscn" id="2_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://dgokd2ubnc73g" path="res://assets/bullet.wav" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bkdpnvjftawhf" path="res://scenes/game_over_screen.tscn" id="4_kvpfn"]
+[ext_resource type="AudioStream" uid="uid://c4ga6idjtq1f1" path="res://assets/explosion_big.wav" id="5_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://cgvvsc5sox71x" path="res://assets/explosion_medium.wav" id="6_gee14"]
+[ext_resource type="AudioStream" uid="uid://bcuyybbq2xo11" path="res://assets/achievement.wav" id="6_kvuet"]
+[ext_resource type="AudioStream" uid="uid://dtivbmcwb6lg8" path="res://assets/explosion_small.wav" id="7_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://bwmxs1l6f6554" path="res://assets/spaceship_explosion.wav" id="9_dinhu"]
+[ext_resource type="AudioStream" uid="uid://cc87gde5gw1oq" path="res://assets/thrusters.wav" id="10_vtaks"]
+[ext_resource type="Script" uid="uid://d4fd88sp2xm4u" path="res://scripts/background_theme.gd" id="13_kvuet"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvpfn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+spread = 0.0
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dinhu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+spread = 0.0
+initial_velocity_min = -30.0
+initial_velocity_max = -30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kvuet"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+spread = 0.0
+initial_velocity_min = -75.0
+initial_velocity_max = -75.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+
+[node name="Asteroids" type="Node2D" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Explosions" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(640, 360)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="StarsFar" type="GPUParticles2D" parent="Background"]
+z_index = -3
+position = Vector2(1300, 360)
+amount = 250
+lifetime = 131.0
+preprocess = 135.0
+visibility_rect = Rect2(-1300, -360, 1280, 720)
+process_material = SubResource("ParticleProcessMaterial_kvpfn")
+
+[node name="StarsClose" type="GPUParticles2D" parent="Background"]
+z_index = -2
+position = Vector2(1300, 360)
+amount = 100
+lifetime = 43.5
+preprocess = 135.0
+visibility_rect = Rect2(-1300, -360, 1280, 720)
+process_material = SubResource("ParticleProcessMaterial_dinhu")
+
+[node name="StarsVeryClose" type="GPUParticles2D" parent="Background"]
+z_index = -1
+position = Vector2(1300, 360)
+amount = 50
+lifetime = 17.5
+preprocess = 135.0
+visibility_rect = Rect2(-1300, -360, 1280, 720)
+process_material = SubResource("ParticleProcessMaterial_kvuet")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 22
+
+[node name="HUD" parent="UI" instance=ExtResource("2_0tnpc")]
+
+[node name="GameOverScreen" parent="UI" instance=ExtResource("4_kvpfn")]
+visible = false
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Achievement" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_kvuet")
+
+[node name="BackgroundTheme" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_vtaks")
+volume_db = -5.0
+script = ExtResource("13_kvuet")
+
+[node name="Bullet" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("3_lnu2h")
+volume_db = -3.0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_dinhu")
+
+[node name="ExplosionBig" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_u5sy4")
+
+[node name="ExplosionMedium" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_gee14")
+
+[node name="ExplosionSmall" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_0tnpc")
+
+[node name="Thrusters" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_vtaks")
+
+[node name="AchievementManager" type="AchievementManager" parent="."]
+
+[connection signal="game_over" from="." to="UI/HUD" method="_on_game_game_over"]
+[connection signal="game_over" from="." to="UI/GameOverScreen" method="_on_game_game_over"]
+[connection signal="bullet_shot" from="Player" to="." method="_on_player_bullet_shot"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="thrusters_toggled" from="Player" to="." method="_on_player_thrusters_toggled"]
+[connection signal="finished" from="Sounds/BackgroundTheme" to="Sounds/BackgroundTheme" method="_on_finished"]
+[connection signal="achievement_achieved" from="AchievementManager" to="." method="_on_achievement_manager_achievement_achieved"]

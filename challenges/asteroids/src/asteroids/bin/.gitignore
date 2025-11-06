@@ -1,0 +1,5 @@
+# GDExtension build output
+/*.so
+/*.dll
+/*.framework
+/*.xcframework

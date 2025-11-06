@@ -1,0 +1,25 @@
+#
+# @mebeim - 2025-10-07
+#
+FROM ubuntu:24.04 AS builder
+
+RUN apt-get update && apt-get install -y python3 python3-pip git make binutils mingw-w64 g++
+RUN python3 -m pip install --break-system-packages scons
+
+USER ubuntu
+WORKDIR /home/ubuntu
+
+RUN git clone --depth 1 --single-branch --branch 4.5 https://github.com/godotengine/godot-cpp
+RUN mkdir -p asteroids/bin
+
+COPY --chown=ubuntu:ubuntu asteroids-gdextension /home/ubuntu/asteroids-gdextension/
+
+# Set these from docker command line
+ARG PLATFORM=linux
+ARG TARGET=template_debug
+RUN cd asteroids-gdextension && make PLATFORM=${PLATFORM} TARGET=${TARGET}
+RUN chmod -x asteroids/bin/*
+
+FROM scratch AS out
+COPY --from=builder /home/ubuntu/asteroids/bin/* /
+
