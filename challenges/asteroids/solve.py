@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 from hashlib import sha1, sha256
 from itertools import count, product
 
