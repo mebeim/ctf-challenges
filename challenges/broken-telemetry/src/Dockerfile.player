@@ -1,0 +1,14 @@
+FROM alpine:3.22.2@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412
+
+RUN apk add openssl
+
+WORKDIR /app
+
+RUN echo 'space{NOT_THE_REAL_FLAG}' > /app/flag
+COPY broken-telemetry /app/
+# Dummy key for testing
+COPY pubkey.bin /app/
+# Dummy telemetry data for testing
+COPY telemetry.bin /input/telemetry
+
+CMD ["./broken-telemetry"]
